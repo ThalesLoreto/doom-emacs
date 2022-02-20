@@ -35,6 +35,12 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+;; Checkers configs
+;; Disable the LSP Format on Save
+;; disable this for use the Flycheck formatter
+(setq +format-with-lsp nil)
+
+;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
