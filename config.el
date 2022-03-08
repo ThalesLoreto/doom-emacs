@@ -42,6 +42,9 @@
 
 ;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
+;; Change the Dashboard
+(setq fancy-splash-image "~/.doom.d/splash/emacs-dash.png")
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
