@@ -29,18 +29,25 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(after! org
+  (setq org-directory "~/Documents/org/")
+  (setq org-log-done 'time)
+
+  (setq org-agenda-files
+        '("~/Documents/org/agenda.org"))
+
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 ;; Checkers configs
 ;; Disable the LSP Format on Save
 ;; disable this for use the Flycheck formatter
 (setq +format-with-lsp nil)
-
-;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;; Change the Dashboard
 (setq fancy-splash-image "~/.doom.d/splash/emacs-dash.png")
