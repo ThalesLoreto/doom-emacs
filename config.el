@@ -26,6 +26,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-dracula)
+;; Change the Dashboard
+(setq fancy-splash-image "~/.doom.d/splash/emacs-dash.png")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -44,13 +46,23 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+;; osx keys
+(setq mac-option-modifier 'super)
+(setq mac-command-modifier 'meta)
+
 ;; Checkers configs
 ;; Disable the LSP Format on Save
 ;; disable this for use the Flycheck formatter
 (setq +format-with-lsp nil)
 
-;; Change the Dashboard
-(setq fancy-splash-image "~/.doom.d/splash/emacs-dash.png")
+;; Force typescript indent level to 2
+(after! typescript-mode
+  (setq typescript-indent-level 2))
+
+;; Discord rich presence
+(setq elcord--editor-name "Emacs")
+(setq elcord-editor-icon "emacs_icon")
+(elcord-mode 1)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
