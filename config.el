@@ -64,6 +64,21 @@
 (setq elcord-editor-icon "emacs_icon")
 (elcord-mode 1)
 
+;; C/C++ lsp settings
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+
+;; Add elisp-lsp when open any Elixir file
+(use-package lsp-mode
+  :commands lsp
+  :ensure t
+  :diminish lsp-mode
+  :hook
+  (elixir-mode . lsp)
+  :init
+  (add-to-list 'exec-path "~/.emacs.d/.local/etc/lsp/elixir-ls/release"))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
