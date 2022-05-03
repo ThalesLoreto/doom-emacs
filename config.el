@@ -77,7 +77,31 @@
   :hook
   (elixir-mode . lsp)
   :init
-  (add-to-list 'exec-path "~/.emacs.d/.local/etc/lsp/elixir-ls/release"))
+  (add-to-list 'exec-path "~/.emacs.d/.local/etc/lsp/elixir-ls/release")
+  (setq lsp-elixir-suggest-specs nil))
+
+;; React Highlight (tree-sitter)
+(use-package! typescript-mode
+  :init
+  (define-derived-mode typescript-tsx-ts-mode typescript-mode "typescript-tsx")
+  (add-to-list 'auto-mode-alist (cons (rx ".tsx" string-end) #'typescript-tsx-ts-mode))
+  t)
+
+(add-hook! typescript-tsx-ts-mode 'lsp!)
+
+(use-package! tree-sitter
+  :hook (prog-mode . turn-on-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
+  :config
+  (require 'tree-sitter-langs)
+
+  (tree-sitter-require 'tsx)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-ts-mode . tsx))
+
+  ;; This makes every node a link to a section of code
+  (setq tree-sitter-debug-jump-buttons t
+        ;; and this highlights the entire sub tree in your code
+        tree-sitter-debug-highlight-jump-region t))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
